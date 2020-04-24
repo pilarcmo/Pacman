@@ -13,8 +13,9 @@
 using namespace std;
 
 class Juego{
-private:
+protected:
     int puntuacion;
+public:
     int grid[ROW][COL]=
     {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -39,7 +40,6 @@ private:
         {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
     };
-public:
         Juego(); //Constructor
         //Hace falta destructor?
         int salida, vidas;
@@ -48,7 +48,11 @@ public:
         bool isBlocked(int row, int col); //Comprobar si la celda esta bloqueada
         void visualizar(pair<int,int> posPM, pair<int,int> posF);
         void restaVida();
-        void marcadorUp10();
+        int marcadorUp10();
 };
+
+pair<int,int> keyMov(Juego juego1,int row, int col);
+
+pair<int,int> randomMov(Juego juego1,int row, int col);
 
 #endif // JUEGO_H
