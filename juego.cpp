@@ -10,7 +10,7 @@ int Juego::marcadorUp(){
     return puntuacion++;
 }
 
-int Juego::encuentraMoneda(){
+int Juego::marcadorUp10(){
     puntuacion+=10;
     return puntuacion;
 }
@@ -107,5 +107,6 @@ pair<int,int> randomMov(Juego juego1,int row, int col){
             break;
         }
     pair<int,int> posicion(row,col);
+
     return posicion;
 }

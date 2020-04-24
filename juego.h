@@ -1,6 +1,17 @@
 #ifndef JUEGO_H
 #define JUEGO_H
 
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
+#include <cstdlib> //rand()
+
+// (Necesita de la definicion de tamaño tablero:)
+#define ROW 21
+#define COL 27
+
+using namespace std;
+
 class Juego{
 private:
     int puntuacion;
@@ -37,7 +48,7 @@ public:
         bool isBlocked(int row, int col); //Comprobar si la celda esta bloqueada
         void visualizar(pair<int,int> posPM, pair<int,int> posF);
         void restaVida();
-        void encuentraMoneda();
+        void marcadorUp10();
 };
 
 #endif // JUEGO_H
