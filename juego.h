@@ -4,7 +4,7 @@
 #include <iostream>
 #include <conio.h>
 #include <windows.h>
-#include <cstdlib> //rand()
+#include <cstdlib>
 
 // (Necesita de la definicion de tamaño tablero:)
 #define ROW 21
@@ -13,9 +13,8 @@
 using namespace std;
 
 class Juego{
-protected:
-    int puntuacion;
 public:
+    int puntuacion;
     int grid[ROW][COL]=
     {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -40,19 +39,50 @@ public:
         {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
     };
+
+    /*int coins[ROW][COL]=
+    {
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0},
+        {0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,1,0},
+        {0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0},
+        {0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0},
+        {0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0},
+        {0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0},
+        {0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0},
+        {0,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0},
+        {0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0},
+        {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+    };*/
         Juego(); //Constructor
         //Hace falta destructor?
         int salida, vidas;
         int marcadorUp();
         void gameover();
         bool isBlocked(int row, int col); //Comprobar si la celda esta bloqueada
-        void visualizar(pair<int,int> posPM, pair<int,int> posF);
+        //void visualizar(pair<int,int> posPM, pair<int,int> posF, pair<int,int> posFr);
         void restaVida();
         int marcadorUp10();
+
+        //void chequeaMonedas();
+        //int existeMoneda(pair<int,int> posPM);
+        //bool dispMoneda(int i, int j);
 };
 
-pair<int,int> keyMov(Juego juego1,int row, int col);
 
-pair<int,int> randomMov(Juego juego1,int row, int col);
+//pair<int,int> keyMov(Juego juego1,int row, int col);
+
+//pair<int,int> randomMov(Juego juego1,int row, int col);
+
 
 #endif // JUEGO_H

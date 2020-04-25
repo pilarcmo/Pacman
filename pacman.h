@@ -9,6 +9,6 @@ public:
     pair<int,int> posPM;
     Pacman();
     //~Pacman();
-    void chequeaVida(pair<int,int> pospm, pair <int,int> posf);
+    int chequeaVida(pair<int,int> pospm, pair <int,int> posf);
 };
 #endif // PACMAN_H
