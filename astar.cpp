@@ -65,7 +65,7 @@ public:
             neighbour = n.pos + neighbours[x];
             if( neighbour == end ) return true;
 
-            if( isValid( neighbour ) && m[neighbour.x][neighbour.y] != 0 ) {
+            if( isValid( neighbour ) && grid[neighbour.x][neighbour.y] != 0 ) {
                 nc = stepCost + n.cost;
                 dist = calcDist( neighbour );
                 if( !existPoint( neighbour, nc + dist ) ) {
@@ -80,8 +80,11 @@ public:
         return false;
     }
 
-    bool search( point& s, point& e, Juego juego1) {
-        node n; end = e; start = s; m = juego1.grid;
+    bool search( point& s, point& e/* , Juego juego1*/) {
+        node n;
+        end = e;
+        start = s;
+        //m = juego1.grid;
         n.cost = 0; n.pos = s; n.parent = 0; n.dist = calcDist( s );
         open.push_back( n );
         while( !open.empty() ) {
@@ -110,7 +113,7 @@ public:
         return cost;
     }
 
-    int m[][COL];
+    //int m[ROW][COL];
     point end, start;
     point neighbours[8];
     std::list<node> open;
