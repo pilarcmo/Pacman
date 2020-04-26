@@ -25,6 +25,7 @@ int Frutas::existeFruta(pair<int, int> posPM){
         int posX=rand()%ROW;
         int posY=rand()%COL;
         //Comprobamos si es válida y si no cambiamos la posición:
+        // Añadir comprobacion de si la celda ya está ocupada por Pacman o Fantasma ¿?
         while(Juego::isBlocked(posX,posY)==true){
             int aux1 =-1 + rand()%2, aux2=-1+rand()%2;
             posX=posX+aux1;
