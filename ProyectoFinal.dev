@@ -1,7 +1,7 @@
 [Project]
 FileName=ProyectoFinal.dev
 Name=ProyectoFinal
-UnitCount=8
+UnitCount=14
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -86,7 +86,7 @@ ProductName=
 ProductVersion=
 AutoIncBuildNrOnRebuild=0
 AutoIncBuildNrOnCompile=0
-UnitCount=10
+UnitCount=14
 
 [Profile1]
 ProfileName=MingW gcc
@@ -204,6 +204,46 @@ BuildCmd=
 
 [Unit10]
 FileName=pacman.h
+CompileCpp=1
+Folder=ProyectoFinal
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=fantasma.cpp
+CompileCpp=1
+Folder=ProyectoFinal
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit12]
+FileName=fantasma.h
+CompileCpp=1
+Folder=ProyectoFinal
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit14]
+FileName=movAleat.cpp
+CompileCpp=1
+Folder=ProyectoFinal
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit13]
+FileName=movAleat.h
 CompileCpp=1
 Folder=ProyectoFinal
 Compile=1

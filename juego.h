@@ -2,8 +2,6 @@
 #define JUEGO_H
 
 #include <iostream>
-#include <conio.h>
-#include <windows.h>
 #include <cstdlib>
 
 // Definicion de tamaño tablero:
@@ -17,10 +15,11 @@ public:
     int puntuacion;
     static int grid[ROW][COL];
     Juego(); //Constructor
-    int salida, vidas;
+    int vidas; //salida?
     int marcadorUp();
     void gameover();
     bool isBlocked(int row, int col); //Comprobar si la celda esta bloqueada
+    pair<int,int> randomStart();
     void restaVida();
     int marcadorUp10();
 };

@@ -15,6 +15,7 @@
 //wxDev-C++ designer will remove them
 ////Header Include Start
 #include "Images/ProyectoFinalFrm_Fondo_XPM.xpm"
+#include "Images/ProyectoFinalFrm_fantasmaIcon_XPM.xpm"
 #include "Images/ProyectoFinalFrm_PacmanIcon_XPM.xpm"
 ////Header Include End
 
@@ -27,16 +28,19 @@
 BEGIN_EVENT_TABLE(ProyectoFinalFrm,wxFrame)
 	////Manual Code Start
 	EVT_KEY_DOWN(ProyectoFinalFrm::OnKeyDown)
+	EVT_TIMER(ID_TIMER, ProyectoFinalFrm::movFantasma)
 	////Manual Code End
 	
 	EVT_CLOSE(ProyectoFinalFrm::OnClose)
 END_EVENT_TABLE()
 ////Event Table End
 
+
 ProyectoFinalFrm::ProyectoFinalFrm(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style)
-: wxFrame(parent, id, title, position, size, style)
+: wxFrame(parent, id, title, position, size, style),m_timer(this, ID_TIMER)
 {
-	CreateGUIControls();
+    CreateGUIControls();	
+    m_timer.Start(500); 
 }
 
 ProyectoFinalFrm::~ProyectoFinalFrm()
@@ -56,6 +60,10 @@ void ProyectoFinalFrm::CreateGUIControls()
 	wxBitmap Fondo_BITMAP(ProyectoFinalFrm_Fondo_XPM);
 	Fondo = new wxStaticBitmap(this, ID_FONDO, Fondo_BITMAP, wxPoint(0, 0), wxSize(675, 525));
 
+	wxBitmap fantasmaIcon_BITMAP(ProyectoFinalFrm_fantasmaIcon_XPM);
+	fantasmaIcon = new wxStaticBitmap(this, ID_FANTASMAICON, fantasmaIcon_BITMAP, wxPoint(101, 175), wxSize(25, 25));
+	fantasmaIcon->SetBackgroundColour(wxColour(_("BLACK")));
+
 	wxBitmap PacmanIcon_BITMAP(ProyectoFinalFrm_PacmanIcon_XPM);
 	PacmanIcon = new wxStaticBitmap(this, ID_PACMANICON, PacmanIcon_BITMAP, wxPoint(25, 25), wxSize(25, 25),wxALWAYS_SHOW_SB);
 	PacmanIcon->SetBackgroundColour(wxColour(_("BLACK")));
@@ -72,12 +80,19 @@ void ProyectoFinalFrm::OnClose(wxCloseEvent& event)
 {
 	Destroy();
 }
-
+ 
 Juego juego1;
 Pacman pacman1;
-int row=pacman1.posPM.first; //Inicializar pos pacman
-int col=pacman1.posPM.second;
-wxPoint p(col,row);
+Fantasma fantasma1;
+
+//srand(time(NULL));
+//srand(wxGetLocalTime());
+int posx=pacman1.posPM.first; //Inicializar pos pacman
+int posy=pacman1.posPM.second;
+wxPoint p(posx*25,posy*25);
+wxPoint pF(100, 175);
+wxPoint moneda;
+wxString palabra;
 
 /*
  * OnKeyDown
@@ -85,31 +100,50 @@ wxPoint p(col,row);
 void ProyectoFinalFrm::OnKeyDown(wxKeyEvent& event)
 {     
     //Modifica posicion segun teclas presionadas:
-        switch (event.GetKeyCode()) {
-        case WXK_LEFT: // Mov izq
-            if (juego1.isBlocked(row,col-1)==false)
-                col = col-1;               
-            break;
-        case WXK_RIGHT: // Mov dcha
-            if (juego1.isBlocked(row,col+1)==false)
-                col = col+1;
-            break;
-        case WXK_UP: // Mov up
-            if (juego1.isBlocked(row-1,col)==false)
-                row = row-1;
-            break;
-        case WXK_DOWN: // Mov down
-            if (juego1.isBlocked(row+1,col)==false)
-                row = row+1;
-            break;
-        case WXK_SPACE: // Salida juego espacio
-            juego1.gameover();
-            break;
-        }  
-    p.x=col*25;
-    p.y=row*25;
-    pacman1.posPM.first=row;
-    pacman1.posPM.second=col;
+    switch (event.GetKeyCode()) {
+    case WXK_LEFT: // Mov izq
+        if (juego1.isBlocked(posy, posx-1)==false)
+             posx =  posx-1;               
+        break;
+    case WXK_RIGHT: // Mov dcha
+        if (juego1.isBlocked(posy, posx+1)==false)
+             posx =  posx+1;
+        break;
+    case WXK_UP: // Mov up
+        if (juego1.isBlocked(posy-1, posx)==false)
+            posy = posy-1;
+        break;
+    case WXK_DOWN: // Mov down
+        if (juego1.isBlocked(posy+1, posx)==false)
+            posy = posy+1;
+        break;
+    case WXK_SPACE: // Salida juego espacio
+        juego1.gameover();
+        break;
+    }  
+    
+    p.x= posx*25;
+    p.y= posy*25;
+    pacman1.posPM.first=posx;
+    pacman1.posPM.second= posy;
     
     PacmanIcon->Move(p);
+    juego1.vidas=pacman1.chequeaVida(pacman1.posPM,fantasma1.posF);
+        
+//    moneda=moneda310->GetPosition();
+//    if (p==moneda)
+//    moneda310->Hide();
+}
+
+/*
+ * movFantasma
+ */
+void ProyectoFinalFrm::movFantasma(wxTimerEvent& timer)
+{ 
+    fantasma1.posF=randomMov(juego1,fantasma1.posF.first, fantasma1.posF.second);
+    pF.x=fantasma1.posF.first*25;
+    pF.y=fantasma1.posF.second*25;
+    fantasmaIcon->Move(pF); 
+    
+    juego1.vidas=pacman1.chequeaVida(pacman1.posPM,fantasma1.posF);
 }
