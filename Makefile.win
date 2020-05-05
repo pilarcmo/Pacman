@@ -1,14 +1,14 @@
 # Project: ProyectoFinal
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.569 on 28/04/20 13:41
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 30/04/20 10:19
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
 CC        = gcc.exe
 WINDRES   = "windres.exe"
-OBJ       = Objects/MingW/ProyectoFinalApp.o Objects/MingW/ProyectoFinalFrm.o Objects/MingW/juego.o Objects/MingW/pacman.o Objects/MingW/ProyectoFinal_private.res
-LINKOBJ   = "Objects/MingW/ProyectoFinalApp.o" "Objects/MingW/ProyectoFinalFrm.o" "Objects/MingW/juego.o" "Objects/MingW/pacman.o" Objects/MingW/ProyectoFinal_private.res
+OBJ       = Objects/MingW/ProyectoFinalApp.o Objects/MingW/ProyectoFinalFrm.o Objects/MingW/juego.o Objects/MingW/pacman.o Objects/MingW/fantasma.o Objects/MingW/movAleat.o Objects/MingW/ProyectoFinal_private.res
+LINKOBJ   = "Objects/MingW/ProyectoFinalApp.o" "Objects/MingW/ProyectoFinalFrm.o" "Objects/MingW/juego.o" "Objects/MingW/pacman.o" "Objects/MingW/fantasma.o" "Objects/MingW/movAleat.o" Objects/MingW/ProyectoFinal_private.res
 LIBS      = -L"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/lib/wx/gcc_lib" -L"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/lib" -L"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/MinGW32/lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxscintilla -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
 INCS      = -I"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/MinGW32/include"
 CXXINCS   = -I"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/MinGW32/include" -I"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/" -I"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/include/common" -I"C:/Users/pilar/Documents/DevCppVisual/App/devcpp/include"
@@ -36,17 +36,23 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
 
-Objects/MingW/ProyectoFinalApp.o: $(GLOBALDEPS) ProyectoFinalApp.cpp ProyectoFinalApp.h ProyectoFinalFrm.h juego.h pacman.h juego.h
+Objects/MingW/ProyectoFinalApp.o: $(GLOBALDEPS) ProyectoFinalApp.cpp ProyectoFinalApp.h ProyectoFinalFrm.h juego.h pacman.h juego.h fantasma.h juego.h fantasma.h movAleat.h juego.h
 	$(CPP) -c ProyectoFinalApp.cpp -o Objects/MingW/ProyectoFinalApp.o $(CXXFLAGS)
 
-Objects/MingW/ProyectoFinalFrm.o: $(GLOBALDEPS) ProyectoFinalFrm.cpp ProyectoFinalFrm.h juego.h pacman.h juego.h Images/ProyectoFinalFrm_Fondo_XPM.xpm Images/ProyectoFinalFrm_PacmanIcon_XPM.xpm
+Objects/MingW/ProyectoFinalFrm.o: $(GLOBALDEPS) ProyectoFinalFrm.cpp ProyectoFinalFrm.h juego.h pacman.h juego.h fantasma.h juego.h fantasma.h movAleat.h juego.h Images/ProyectoFinalFrm_Fondo_XPM.xpm Images/ProyectoFinalFrm_fantasmaIcon_XPM.xpm Images/ProyectoFinalFrm_PacmanIcon_XPM.xpm
 	$(CPP) -c ProyectoFinalFrm.cpp -o Objects/MingW/ProyectoFinalFrm.o $(CXXFLAGS)
 
 Objects/MingW/juego.o: $(GLOBALDEPS) juego.cpp juego.h
 	$(CPP) -c juego.cpp -o Objects/MingW/juego.o $(CXXFLAGS)
 
-Objects/MingW/pacman.o: $(GLOBALDEPS) pacman.cpp pacman.h juego.h
+Objects/MingW/pacman.o: $(GLOBALDEPS) pacman.cpp pacman.h juego.h fantasma.h juego.h
 	$(CPP) -c pacman.cpp -o Objects/MingW/pacman.o $(CXXFLAGS)
+
+Objects/MingW/fantasma.o: $(GLOBALDEPS) fantasma.cpp fantasma.h juego.h
+	$(CPP) -c fantasma.cpp -o Objects/MingW/fantasma.o $(CXXFLAGS)
+
+Objects/MingW/movAleat.o: $(GLOBALDEPS) movAleat.cpp movAleat.h juego.h
+	$(CPP) -c movAleat.cpp -o Objects/MingW/movAleat.o $(CXXFLAGS)
 
 Objects/MingW/ProyectoFinal_private.res: Objects/MingW/ProyectoFinal_private.rc ProyectoFinalApp.rc 
 	$(WINDRES) --input-format=rc -o Objects/MingW/ProyectoFinal_private.res $(RCINCS) Objects/MingW/ProyectoFinal_private.rc -O coff

@@ -2,7 +2,6 @@
 
 Juego::Juego(){
     puntuacion=0;
-    salida=0;
     vidas=3;
 }
 
@@ -15,8 +14,7 @@ int Juego::marcadorUp10(){
 }
 
 void Juego::gameover(){
-    salida=1;
-    cout << "Final del juego" <<endl;
+//    salida=1;
     exit(0);
     return;
 
@@ -32,6 +30,23 @@ bool Juego::isBlocked(int row, int col){
         return (false);
     else
         return (true); //TRUE si la celda esta bloqueada
+}
+
+pair<int,int> Juego::randomStart(){
+    //Posicion aleatoria entre margenes [0 ROW, 0 COL]
+    int posX=rand()%COL;
+    int posY=rand()%ROW;
+    
+    //Comprobamos si es válida y si no cambiamos la posición:
+    while(Juego::isBlocked(posY,posX)==true){
+        int aux1 =-1 + rand()%2, aux2=-1+rand()%2;
+        posX=posX+aux1;
+        posY=posY+aux2;
+    }
+        
+    pair<int,int>posicion(posX,posY);
+
+ return posicion;
 }
 
 int Juego::grid[ROW][COL]={ 

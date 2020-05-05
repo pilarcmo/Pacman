@@ -12,12 +12,12 @@
 
 IMPLEMENT_APP(ProyectoFinalFrmApp)
 
+
 bool ProyectoFinalFrmApp::OnInit()
 {
     ProyectoFinalFrm* frame = new ProyectoFinalFrm(NULL);
-    SetTopWindow(frame);
+    SetTopWindow(frame); 
     frame->Show();
-    srand(time(NULL));
     return true;
 }
  
@@ -25,3 +25,5 @@ int ProyectoFinalFrmApp::OnExit()
 {
 	return 0;
 }
+
+
