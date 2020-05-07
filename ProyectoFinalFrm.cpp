@@ -149,7 +149,7 @@ void ProyectoFinalFrm::ProyectoFinalFrmActivate(wxActivateEvent& event)
     fantasmaIcon->Move(pF); 
     fantasmaIcon->Show();
     
-    mensajeInicio->Move(400,300);
+    mensajeInicio->Move(600,400);
 }
 
 
@@ -217,7 +217,11 @@ void ProyectoFinalFrm::movFantasma(wxTimerEvent& timer)
     fantasmaIcon->Move(pF); 
     
     juego1.vidas=pacman1.chequeaVida(pacman1.posPM,fantasma1.posF);
-
+    if (pacman1.posPM==fantasma1.posF){
+        PacmanIcon->SetBitmap(PacmanIcon_BITMAP);
+        writeScore();
+    }
+    
     fantasmaIcon->SetBitmap(fantasmaIcon_BITMAP);
     Fruta->SetBitmap(Fruta_BITMAP); 
        
@@ -249,13 +253,27 @@ void ProyectoFinalFrm::menuClick(wxCommandEvent& event)
     
     respuesta = 0; 
     opcion=mensajeInicio->GetSelection();
+    
 }
 
-int i=0; 
-aStar as;
+
 point posInst(0,0);
 list<point> path1;
 list<point>::iterator it;   
+
+/*
+ * findPathAstar
+ */
+void ProyectoFinalFrm::findPathAstar()
+{ 
+    aStar as;
+    point s(posy, posx), e(fruta1.posFr.second,fruta1.posFr.first);       
+    as.search(s,e);
+    int c=as.path(path1);
+    it=path1.begin();
+	pathFound=true;
+}
+
 
 /*
  * movastar
@@ -263,26 +281,21 @@ list<point>::iterator it;
 void ProyectoFinalFrm::movastar(wxTimerEvent& timer)
 { 
 if (opcion==1){ //Movimiento a*
-    while (pathFound==false){ //Buscar camino
-        point s(pacman1.posPM.second, pacman1.posPM.first), e(fruta1.posFr.second,fruta1.posFr.first);       
-        as.search(s,e);
-        int c=as.path(path1);
-        it=path1.begin();
-    	pathFound=true;
-    	Texto->AppendText("Path OK");
+    if(pathFound==false){
+        path1.clear();
+        findPathAstar();
     }
     
-    //Igual con el flag de si ha encontrado el camino sobra la i ¿?
-    if(pathFound==true && i<=path1.size()){ //Movimiento: estan cambiados la x y la y!!!
+    else{ //Movimiento: estan cambiados la x y la y!!!
 		posInst=*it;
 		posx=posInst.y; //orden cambiado!!
         posy=posInst.x;
         p.x= posx*25;
         p.y= posy*25;
-        pacman1.posPM.first=posx; //Se podria ahorrar variable aux posx y posy
+        pacman1.posPM.first=posx;
         pacman1.posPM.second=posy;
         PacmanIcon->Move(p);
-        it++; i++;
+        it++;
         
         juego1.vidas=pacman1.chequeaVida(pacman1.posPM,fantasma1.posF);
         if (pacman1.posPM==fantasma1.posF){
@@ -290,19 +303,26 @@ if (opcion==1){ //Movimiento a*
             PacmanIcon->SetBitmap(PacmanIcon_BITMAP);
             writeScore();
         }
-	}
-	
-	juego1.puntuacion=fruta1.existeFruta(pacman1.posPM);
-    if (marcador!=juego1.puntuacion){
-        pathFound=false;
-        path1.clear();
-        pFr.x=fruta1.posFr.first*25;
-        pFr.y=fruta1.posFr.second*25;
-        Fruta->Move(pFr);
-        Fruta->SetBitmap(Fruta_BITMAP);   
-        marcador+=10;
-        writeScore();
-        i=0; 
+        
+    	juego1.puntuacion=fruta1.existeFruta(pacman1.posPM);
+        if (marcador!=juego1.puntuacion){
+            m_timer2.Stop();
+    
+            pFr.x=fruta1.posFr.first*25;
+            pFr.y=fruta1.posFr.second*25;
+            Fruta->Move(pFr);
+            Fruta->SetBitmap(Fruta_BITMAP);   
+            marcador+=10;
+            writeScore();
+        
+            pathFound=false;
+            m_timer2.Start();
+        }
     }
 }     
+else{
+    pathFound=false;
 }
+}
+
+

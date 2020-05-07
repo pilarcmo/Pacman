@@ -64,6 +64,7 @@ class ProyectoFinalFrm : public wxFrame
 		void menuClick(wxCommandEvent& event);
 		void ProyectoFinalFrmActivateApp(wxActivateEvent& event);
 		void movastar(wxTimerEvent& timer);
+		void findPathAstar();
 		
 	private:
 		//Do not add custom control declarations between
