@@ -24,10 +24,8 @@ public:
 class aStar: public Juego {
 public:
     aStar() {
-        neighbours[0] = point( -1, -1 ); neighbours[1] = point(  1, -1 );
-        neighbours[2] = point( -1,  1 ); neighbours[3] = point(  1,  1 );
-        neighbours[4] = point(  0, -1 ); neighbours[5] = point( -1,  0 );
-        neighbours[6] = point(  0,  1 ); neighbours[7] = point(  1,  0 );
+        neighbours[0] = point( -1, 0 ); neighbours[1] = point(  0, -1 );
+        neighbours[2] = point( 1,  0 ); neighbours[3] = point(  0,  1 );
     }
 
     int calcDist( point& p ){ // distancia desde el punto hasta el final
@@ -59,9 +57,9 @@ public:
         int stepCost, nc, dist;
         point neighbour;
 
-        for( int x = 0; x < 8; x++ ) {
+        for( int x = 0; x < 4; x++ ) {
             // one can make diagonals have different cost
-            stepCost = x < 4 ? 1 : 1;
+            stepCost = x < 4 ? 1 : 1; //????
             neighbour = n.pos + neighbours[x];
             if( neighbour == end ) return true;
 
