@@ -26,6 +26,7 @@
 //Header Include Start and Header Include End.
 //wxDev-C++ designer will remove them. Add custom headers after the block.
 ////Header Include Start
+#include <wx/msgdlg.h>
 #include <wx/choicdlg.h>
 #include <wx/button.h>
 #include <wx/textctrl.h>
@@ -44,6 +45,7 @@ using namespace std;
 #include "movAleat.h"
 #include "astar.cpp"
 
+
 ////Dialog Style Start
 #undef ProyectoFinalFrm_STYLE
 #define ProyectoFinalFrm_STYLE wxCAPTION | wxSYSTEM_MENU | wxMINIMIZE_BOX | wxCLOSE_BOX
@@ -61,7 +63,10 @@ class ProyectoFinalFrm : public wxFrame
 		void movFantasma(wxTimerEvent& timer);
 		void ProyectoFinalFrmActivate(wxActivateEvent& event);
 		void writeScore();
+		void endGame1();
+		void endGame2();
 		void menuClick(wxCommandEvent& event);
+		void instrClick(wxCommandEvent& event);
 		void ProyectoFinalFrmActivateApp(wxActivateEvent& event);
 		void movastar(wxTimerEvent& timer);
 		void findPathAstar();
@@ -71,10 +76,17 @@ class ProyectoFinalFrm : public wxFrame
 		//GUI Control Declaration Start and GUI Control Declaration End.
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
-		wxStaticBitmap *fondo;
+		wxMessageDialog *WxMessageDialog2;
+		wxMessageDialog *WxMessageDialog3;
+		wxMessageDialog *WxMessageDialog1;
 		wxSingleChoiceDialog *mensajeInicio;
+		wxButton *instrucciones;
+		wxStaticBitmap *fondo;
 		wxButton *menu;
 		wxTextCtrl *Texto;
+		wxStaticBitmap *fantasmaIcon4;
+		wxStaticBitmap *fantasmaIcon3;
+		wxStaticBitmap *fantasmaIcon2;
 		wxStaticBitmap *Fruta;
 		wxStaticBitmap *fantasmaIcon;
 		wxStaticBitmap *PacmanIcon;
@@ -91,9 +103,13 @@ class ProyectoFinalFrm : public wxFrame
 		enum
 		{
 			////GUI Enum Control ID Start
+			ID_INSTRUCCIONES = 1015,
 			ID_FONDO = 1014,
 			ID_MENU = 1013,
 			ID_TEXTO = 1012,
+			ID_FANTASMAICON4 = 1018,
+			ID_FANTASMAICON3 = 1017,
+			ID_FANTASMAICON2 = 1016,
 			ID_FRUTA = 1008,
 			ID_FANTASMAICON = 1006,
 			ID_PACMANICON = 1003,

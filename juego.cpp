@@ -21,14 +21,27 @@ void Juego::gameover(){
 
 void Juego::restaVida(){
     vidas--;
-    if(vidas==0){Juego::gameover();}
 }
 
 bool Juego::isBlocked(int row, int col){
+    pair<int,int> aux(row,col);
     if(grid[row][col] == 1)
         return (false);
     else
         return (true); //TRUE si la celda esta bloqueada
+}
+
+bool Juego::isBlockedF(int row, int col,  pair<int,int> f1, pair<int,int> f2, pair<int,int> f3){
+    pair<int,int> aux(row,col);
+    if(aux.first==f1.first && aux.second==f1.second)
+        return (true);
+    else if(aux.first==f2.first && aux.second==f2.second)
+        return (true);
+    else if(aux.first==f3.first && aux.second==f3.second)
+        return (true);
+    else
+        return (false); 
+    //TRUE si la celda esta bloqueada
 }
 
 pair<int,int> Juego::randomStart(){

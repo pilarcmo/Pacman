@@ -20,6 +20,7 @@ public:
     int marcadorUp();
     void gameover();
     bool isBlocked(int row, int col); //Comprobar si la celda esta bloqueada
+    bool isBlockedF(int row, int col, pair<int,int> f1, pair<int,int> f2, pair<int,int> f3);
     pair<int,int> randomStart();
     void restaVida();
     int marcadorUp10();
