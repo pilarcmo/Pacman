@@ -1,6 +1,6 @@
 #include "otherfunctions.h"
 
-//Funcion movimiento (lectura teclado juego1)
+//Funcion movimiento (lectura teclado)
 pair<int,int> keyMov(Juego juego1,int row, int col){
     char key;
     if (kbhit()) { //Modifica posicion segun flechas presionadas:
@@ -32,7 +32,6 @@ pair<int,int> keyMov(Juego juego1,int row, int col){
 }
 
 //Funcion movimiento (aleatorio - fantasmas)
-//A√±adir condicion de la posicion de otro fantasma: tampoco se mueva si ya esta ocupado
 pair<int,int> randomMov(Juego juego1,int row, int col){
         int valor = rand() % 4 +1;
         switch (valor) {
@@ -58,7 +57,7 @@ pair<int,int> randomMov(Juego juego1,int row, int col){
     return posicion;
 }
 
-//Muestra posiciones del PM, del F, de la fruta y las monedas, adem√°s de la puntuaci√≥n y las vidas restantes
+//Muestra posiciones del PM, del F, de la fruta y las monedas, adem·s de la puntuaciÛn y las vidas restantes
 void visualizar(Juego juego1, Monedas moneda, pair<int,int> posPM,pair<int,int> posF,pair<int,int> posFr){
     system("cls");
     for (int i=0; i<ROW; i++){

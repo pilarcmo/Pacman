@@ -31,9 +31,9 @@ public:
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
     };
     Monedas();
-    void chequeaMonedas();
-    int existeMoneda(pair<int,int> posPM);
-    bool dispMoneda(int i, int j);
+    bool chequeaMonedas(); // Comprueba si se han conseguido todas las monedas
+    int existeMoneda(pair<int,int> posPM); // Comprueba si hay una moneda en la posición introducida
+    bool dispMoneda(int i, int j); // Muestra las monedas no conseguidas 
 };
 
 #endif // MONEDAS_H

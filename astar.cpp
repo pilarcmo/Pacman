@@ -24,19 +24,16 @@ public:
 class aStar: public Juego {
 public:
     aStar() {
-        neighbours[0] = point( -1, -1 ); neighbours[1] = point(  1, -1 );
-        neighbours[2] = point( -1,  1 ); neighbours[3] = point(  1,  1 );
-        neighbours[4] = point(  0, -1 ); neighbours[5] = point( -1,  0 );
-        neighbours[6] = point(  0,  1 ); neighbours[7] = point(  1,  0 );
+        neighbours[0] = point( -1, 0 ); neighbours[1] = point(  0, -1 );
+        neighbours[2] = point( 1,  0 ); neighbours[3] = point(  0,  1 );
     }
 
     int calcDist( point& p ){ // distancia desde el punto hasta el final
-        // need a better heuristic
         int x = end.x - p.x, y = end.y - p.y;
         return( x * x + y * y );
     }
 
-    bool isValid( point& p ) { // el punto debe encontrarse entre los márgenes validos
+    bool isValid( point& p ) { // el punto debe encontrarse entre los margenes validos
         return ( p.x >-1 && p.y > -1 && p.x < COL && p.y < ROW );
     }
 
@@ -59,8 +56,7 @@ public:
         int stepCost, nc, dist;
         point neighbour;
 
-        for( int x = 0; x < 8; x++ ) {
-            // one can make diagonals have different cost
+        for( int x = 0; x < 4; x++ ) {
             stepCost = x < 4 ? 1 : 1;
             neighbour = n.pos + neighbours[x];
             if( neighbour == end ) return true;
@@ -80,15 +76,13 @@ public:
         return false;
     }
 
-    bool search( point& s, point& e/* , Juego juego1*/) {
+    bool search( point& s, point& e) {
         node n;
         end = e;
         start = s;
-        //m = juego1.grid;
         n.cost = 0; n.pos = s; n.parent = 0; n.dist = calcDist( s );
         open.push_back( n );
         while( !open.empty() ) {
-            //open.sort();
             node n = open.front();
             open.pop_front();
             closed.push_back( n );
@@ -113,7 +107,6 @@ public:
         return cost;
     }
 
-    //int m[ROW][COL];
     point end, start;
     point neighbours[8];
     std::list<node> open;

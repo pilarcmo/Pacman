@@ -6,7 +6,7 @@
 #include <windows.h>
 #include <cstdlib>
 
-// (Necesita de la definicion de tamaÃ±o tablero:)
+// Definimos el tamaño del laberinto
 #define ROW 21
 #define COL 27
 
@@ -40,49 +40,16 @@ public:
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
     };
 
-    /*int coins[ROW][COL]=
-    {
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-        {0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0},
-        {0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0},
-        {0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,1,0},
-        {0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0},
-        {0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0},
-        {0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0},
-        {0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0},
-        {0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0},
-        {0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0},
-        {0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,1,0},
-        {0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0},
-        {0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0},
-        {0,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0},
-        {0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0},
-        {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
-        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-    };*/
-        Juego(); //Constructor
-        //Hace falta destructor?
+        Juego(); 
         int salida, vidas;
-        int marcadorUp();
-        void gameover();
-        bool isBlocked(int row, int col); //Comprobar si la celda esta bloqueada
-        //void visualizar(pair<int,int> posPM, pair<int,int> posF, pair<int,int> posFr);
-        void restaVida();
-        int marcadorUp10();
+        int marcadorUp(); // Aumenta 1 punto el marcador
+        void gameover(); // Finalización de la partida
+        bool isBlocked(int row, int col); // Comprobar si la celda esta bloqueada
+        void restaVida(); // Se disminuye en 1 las vidas
+        int marcadorUp10(); // Aumenta 10 puntos el marcador
+        pair<int,int> randomStart(); // Permite generar una posición aleatoria válida
 
-        //void chequeaMonedas();
-        //int existeMoneda(pair<int,int> posPM);
-        //bool dispMoneda(int i, int j);
 };
-
-
-//pair<int,int> keyMov(Juego juego1,int row, int col);
-
-//pair<int,int> randomMov(Juego juego1,int row, int col);
 
 
 #endif // JUEGO_H

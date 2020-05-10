@@ -6,8 +6,7 @@
 class Fantasma : public Juego{
 public:
     pair<int,int> posF;
-    Fantasma(); // Se inicia en posicion aleatoria
-    //~Fantasma();
+    Fantasma(); 
 };
 
 #endif // FANTASMA_H
