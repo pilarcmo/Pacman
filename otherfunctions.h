@@ -1,9 +1,6 @@
 #ifndef OTHERFUNCTIONS_H
 #define OTHERFUNCTIONS_H
 
-#include <iostream>
-#include <conio.h>
-#include <windows.h>
 #include "juego.h"
 #include "monedas.h"
 
