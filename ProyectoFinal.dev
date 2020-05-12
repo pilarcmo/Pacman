@@ -1,7 +1,7 @@
 [Project]
 FileName=ProyectoFinal.dev
 Name=ProyectoFinal
-UnitCount=20
+UnitCount=17
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -278,15 +278,6 @@ CompileCpp=1
 Folder=ProyectoFinal
 Compile=1
 Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit18]
-FileName=pacman_beginning.wav
-Folder=ProyectoFinal
-Compile=0
-Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
